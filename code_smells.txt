@@ -1,0 +1,17 @@
+1 - Nomes
+- Mudar nome de variaveis, parametros, metodos
+
+2 - Espaçamento
+- Falta de identação, espaços desnecessarios 
+
+3 - Comentario
+- Código morto
+
+4 - Condições confusa
+- Código muito longe da margem (utilziado clausula guarda), ternario 
+
+5 - Algoritimo estranho de calculo
+
+6 - Tratamento de erro desnecessarios
+
+7 - declaração de variavel longe da utilização
