@@ -29,7 +29,6 @@ function extractDigits(cleanCpf: string) {
     return cleanCpf.slice(9);
 }
 
-
 function calculateDigits(cleanCpf: string, factor: number) {
     let result = 0;
     for(const digit of cleanCpf) {
