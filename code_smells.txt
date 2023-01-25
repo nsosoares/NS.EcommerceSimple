@@ -1,8 +1,8 @@
-1 - Espaços em branco desnecessarios
-2 - Comentarios desnecessarios
-3 - Identação
-4 - Variaveis declaradas muito longe da utilização
-5 - Tratamento de exception inadequado
+1 - Espaçamentos em branco
+2 - Identação
+3 - Comentarios 
+4 - Variaveis declaradas longe de ser utilizadas
+5 - Tratamento de erro inadequado
 6 - Condições confusas
-7 - Nome de variaveis
-8 - Algoritimo confusos
+7 - Nomes de variaveis
+8 - Algoritimo confuso
