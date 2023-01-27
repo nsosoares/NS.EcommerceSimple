@@ -1,18 +1,18 @@
-drop table ecommerce.producut;
+drop table ecommerce.product;
 drop table ecommerce.coupon;
 drop schema ecommerce;
 
 create schema ecommerce;
 
-create table ecommerce.producut (
+create table ecommerce.product (
     id_product integer primary key,
     price numeric,
     description text
 );
 
-insert into ecommerce.producut (id_product, price, description) VALUES (1, 10, 'A');
-insert into ecommerce.producut (id_product, price, description) VALUES (2, 10, 'B');
-insert into ecommerce.producut (id_product, price, description) VALUES (3, 10, 'C');
+insert into ecommerce.product (id_product, price, description) VALUES (1, 10, 'A');
+insert into ecommerce.product (id_product, price, description) VALUES (2, 10, 'B');
+insert into ecommerce.product (id_product, price, description) VALUES (3, 10, 'C');
 
 create table ecommerce.coupon (
     code text primary key,
