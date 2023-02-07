@@ -32,7 +32,7 @@ test("Deve validar produto não existente", async function () {
     const order = {
         cpf: "772.801.132-49",
         items: [
-            {idProduct: 7, quantity: 1}
+            {idProduct: 8, quantity: 1}
         ]
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
@@ -52,10 +52,10 @@ test("Deve fazer um pedido com 3 produtos com cupom de desconto", async function
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
     const output = response.data;
-    expect(output.total).toBe(240);
+    expect(output.total).toBe(292);
 });
 
-test("Não deve validar um cupom expirado", async function() {
+test("Deve fazer um pedido com cupom expirado", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
@@ -66,12 +66,11 @@ test("Não deve validar um cupom expirado", async function() {
         coupon: "VALE10"
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
-    expect(response.status).toBe(422);
     const output = response.data;
-    expect(output.message).toBe("Expired Coupon")
+    expect(output.total).toBe(300);
 });
 
-test("Não deve validar um cupom inexistente", async function() {
+test("Deve fazer um pedido com cupom inexistente", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
@@ -82,18 +81,15 @@ test("Não deve validar um cupom inexistente", async function() {
         coupon: "VALE40"
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
-    expect(response.status).toBe(422);
     const output = response.data;
-    expect(output.message).toBe("Coupon does not exist")
+    expect(output.total).toBe(300);
 });
 
-test("Não Deve validar a quantidade do produto negativa", async function() {
+test("Deve fazer um pedido com a quantidade negativa", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
-            {idProduct: 1, quantity: 0},
             {idProduct: 2, quantity: -1},
-            {idProduct: 3, quantity: 2},
         ]
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
@@ -102,11 +98,10 @@ test("Não Deve validar a quantidade do produto negativa", async function() {
     expect(output.message).toBe("Invalid product quantity");
 });
 
-test("Não Deve validar pedidos com items repetidos", async function() {
+test("Deve fazer um pedido com items repetidos", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
-            {idProduct: 1, quantity: 1},
             {idProduct: 2, quantity: 2},
             {idProduct: 2, quantity: 2},
         ]
@@ -117,11 +112,10 @@ test("Não Deve validar pedidos com items repetidos", async function() {
     expect(output.message).toBe("Has repeated item");
 });
 
-test("Não deve validar item com dimensão negativa", async function() {
+test("Deve fazer um pedido com item com dimensão negativa", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
-            {idProduct: 1, quantity: 1},
             {idProduct: 4, quantity: 2},
         ]
     };
@@ -131,7 +125,7 @@ test("Não deve validar item com dimensão negativa", async function() {
     expect(output.message).toBe("Item with negative dimension");
 });
 
-test("Não deve validar item com peso negativo", async function() {
+test("Deve fazer um pedido com item com peso negativo", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
@@ -145,7 +139,7 @@ test("Não deve validar item com peso negativo", async function() {
     expect(output.message).toBe("Item with negative weight");
 });
 
-test("Deve calcular o valor do frente", async function() {
+test("Deve fazer um pedido calculando o frete", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
@@ -157,7 +151,7 @@ test("Deve calcular o valor do frente", async function() {
     expect(output.total).toBe(40);
 });
 
-test("Deve calcular o valor minimo do frente", async function() {
+test("Deve fazer um pedido calculando o valor minimo de frete", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
