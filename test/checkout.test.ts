@@ -6,10 +6,12 @@ import { IProductData } from './../src/IProductData';
 import { Checkout } from '../src/Checkout';
 import Sinon from 'sinon';
 import { CurrencyGateway } from '../src/CurrencyGateway';
+import { IOrderData } from '../src/IOrderData';
 
 let checkout: Checkout;
 let productData: IProductData;
 let couponData: ICouponData;
+let orderData: IOrderData;
 beforeEach(() => {
     productData = {
         async getProduct(idProduct: number): Promise<any> {
@@ -35,9 +37,17 @@ beforeEach(() => {
         }
     };
 
-   
+   orderData = {
+    async save(order: any): Promise<void> {
+    },
+    async getByCpf(cpf: string): Promise<any> {
+    },
+    async count(): Promise<number> {
+        return 0;
+    } 
+   }
 
-    checkout = new Checkout(productData, couponData);
+    checkout = new Checkout(productData, couponData, orderData);
 });
 
 test("Deve criar um pedido com 3 produtos", async function() {
@@ -195,10 +205,23 @@ test("Deve fazer um pedido com items com moedas diferentes com fake", async func
         }
     }
     
-    const output = await new Checkout(productData, couponData, currencyGatewayFake, mailerFake).execute(order);
+    const output = await new Checkout(productData, couponData, orderData, currencyGatewayFake, mailerFake).execute(order);
     expect(output.total).toBe(60);
     expect(log).toHaveLength(1);
     expect(log[0].to).toBe("nsosoares@gmail.com");
     expect(log[0].subject).toBe("checkout success");
     expect(log[0].message).toBe("...");
+});
+
+test("Deve fazer um pedido e obter o código do pedido", async function() {
+    const order = {
+        cpf: "772.801.132-49",
+        items: [
+            {idProduct: 6, quantity: 1},
+        ]
+    };
+    
+    const output = await checkout.execute(order);
+    const year = new Date().getFullYear();
+    expect(output.code).toBe(`${year}00000001`);
 });

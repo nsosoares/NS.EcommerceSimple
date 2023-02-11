@@ -28,3 +28,24 @@ create table ecommerce.coupon (
 
 insert into ecommerce.coupon (code, percentage, expire_date) VALUES ('VALE20', 20, '2023-02-15');
 insert into ecommerce.coupon (code, percentage, expire_date) VALUES ('VALE10', 20, '2023-01-01');
+
+create table ecommerce.order (
+    id_order serial primary key,
+    coupon_code text,
+    coupon_percentage numeric,
+    code text,
+    cpf text,
+    email text,
+    issue_date timestamp,
+    freight numeric,
+    total numeric,
+    sequence integer
+);
+
+create table ecommerce.item (
+    id_order integer references ecommerce.order (id_order),
+    id_product integer references ecommerce.product (id_product),
+    price numeric,
+    quantity numeric,
+    primary key (id_order, id_product)
+);

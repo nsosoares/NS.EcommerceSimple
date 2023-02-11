@@ -1,3 +1,5 @@
+import { Coupon } from './Coupon';
+import { IOrderData } from './IOrderData';
 import { IMailer } from './IMailer';
 import { Mailer } from './Mailer';
 import { ICurrencyGateway } from './ICurrencyGateway';
@@ -5,11 +7,13 @@ import { CurrencyGateway } from './CurrencyGateway';
 import { ICouponData } from './ICouponData';
 import { IProductData } from './IProductData';
 import { validate } from "./cpfValidator";
+import { FreightCalculator } from './FreightCalculator';
 
 export class Checkout {
     constructor(
         readonly productData: IProductData, 
-        readonly couponData: ICouponData, 
+        readonly couponData: ICouponData,
+        readonly orderData: IOrderData, 
         readonly currencyGateway: ICurrencyGateway = new CurrencyGateway(),
         readonly mailer: IMailer = new Mailer()) {
     }
@@ -42,23 +46,29 @@ export class Checkout {
                 throw new Error("Item with negative weight");
             }
             total += parseFloat(product.price) * (currencies[product.currency] || 1) * item.quantity;
-            const volume = (product.width / 100) * (product.height / 100) * (product.length / 100);
-            const density = parseFloat(product.weigth)/volume;
-            const itemFreight = 1000 * volume * (density / 100);
-            freight += (itemFreight >= 10) ? itemFreight : 10;
+            freight += FreightCalculator.calculate(product);
         }
         if(input.coupon) {
-            const coupon = await this.couponData.getCoupon(input.coupon);
-            const today = new Date();
-            if(coupon && new Date(coupon.expire_date) > today) {
-                total -= (total * coupon.percentage) / 100;
+            const couponData = await this.couponData.getCoupon(input.coupon);
+            if(couponData) {
+                const coupon = new Coupon(couponData.code, couponData.percentage, couponData.expire_date);
+                if(couponData && !coupon.isExpired()){
+                    total -= coupon.getDiscount(total);
+                }
             }
         }
         if(input.email) {
             this.mailer.send(input.email, "checkout success", "...");
         }
         total += freight;
-        return {total: total};
+        const year = new Date().getFullYear();
+        const sequence = await this.orderData.count() + 1;
+        const code = `${year}${new String(sequence).padStart(8, "0")}`;
+        await this.orderData.save({cpf: input.cpf, total: total});
+        return {
+            total: total,
+            code: code
+        };
     }
 }
 

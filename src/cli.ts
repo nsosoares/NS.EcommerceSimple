@@ -1,3 +1,4 @@
+import { OrderData } from './OrderData';
 import { CouponData } from './CouponData';
 import { ProductData } from './ProductData';
 import { Checkout } from "./Checkout";
@@ -21,7 +22,8 @@ process.stdin.on("data", async function (chunck) {
         try {
             const productData = new ProductData();
             const couponData = new CouponData();
-            const checkout = new Checkout(productData, couponData);
+            const orderData = new OrderData();
+            const checkout = new Checkout(productData, couponData, orderData);
             const total = await checkout.execute(input);
             console.log(total);
         } catch(error: any) {
