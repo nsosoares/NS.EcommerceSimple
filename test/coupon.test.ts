@@ -1,4 +1,4 @@
-import { Coupon } from "../src/Coupon";
+import { Coupon } from "../src/domain/entities/Coupon";
 
 test("Deve validar se um cupom esta expirado", function() {
     const coupon = new Coupon('VALE20', 20, new Date('2022-02-15'));

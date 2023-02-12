@@ -1,7 +1,8 @@
-import { OrderData } from './OrderData';
-import { CouponData } from './CouponData';
-import { ProductData } from './ProductData';
-import { Checkout } from "./Checkout";
+import { PgPromiseConnection } from './infra/database/PgPromiseConnection';
+import { OrderData } from './infra/data/OrderData';
+import { CouponData } from './infra/data/CouponData';
+import { ProductData } from './infra/data/ProductData';
+import { Checkout } from "./application/Checkout";
 
 const input: any = {
     items: []
@@ -20,11 +21,13 @@ process.stdin.on("data", async function (chunck) {
     }
     if(command.startsWith("checkout")) {
         try {
-            const productData = new ProductData();
-            const couponData = new CouponData();
-            const orderData = new OrderData();
+            const connection = new PgPromiseConnection();
+            const productData = new ProductData(connection);
+            const couponData = new CouponData(connection);
+            const orderData = new OrderData(connection);
             const checkout = new Checkout(productData, couponData, orderData);
             const total = await checkout.execute(input);
+            await connection.close();
             console.log(total);
         } catch(error: any) {
             console.log(error.message);

@@ -1,4 +1,4 @@
-import { validate } from "../src/domain/entities/cpfValidator";
+import { Cpf } from "../src/domain/entities/Cpf";
 
 const invalidCpfs = [
     "111.111.111-11",
@@ -23,16 +23,13 @@ const validCpfs = [
 ]
 
 test.each(invalidCpfs)("Deve validar cpf invalido: %s", function(cpf) {
-    const isValid = validate(cpf);
-    expect(isValid).toBeFalsy();
+    expect(() => new Cpf(cpf)).toThrow("Invalid CPF"); 
 });
 
 test.each(validCpfs)("Deve validar CPF valido: %s", function(cpf) {
-    const isValid = validate(cpf);
-    expect(isValid).toBeTruthy();
+    expect(new Cpf(cpf).getValue()).toBe(cpf); 
 });
 
 test("Deve validar um CPF com caracteres Invalidos", function() {
-    const isValid = validate("123");
-    expect(isValid).toBeFalsy();
+    expect(() => new Cpf('123')).toThrow("Invalid CPF"); 
 });

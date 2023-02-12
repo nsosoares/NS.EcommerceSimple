@@ -1,4 +1,4 @@
-import { IOrderData } from './IOrderData';
+import { IOrderData } from '../domain/data/IOrderData';
 export class GetOrderByCpf {
     constructor(readonly orderData: IOrderData) {
 

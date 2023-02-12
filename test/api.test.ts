@@ -82,7 +82,7 @@ test("Deve fazer um pedido com cupom inexistente", async function() {
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
     const output = response.data;
-    expect(output.total).toBe(300);
+    expect(output.message).toBe("Invalid Coupon");
 });
 
 test("Deve fazer um pedido com a quantidade negativa", async function() {
