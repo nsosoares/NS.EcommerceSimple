@@ -8,8 +8,8 @@ import { ExpressHttpServer } from './infra/http/ExpressHttpServer';
 import { HapiHttpServer } from './infra/http/HapiHttpServer';
 
 const connection = new PgPromiseConnection();
-// const httpServer = new ExpressHttpServer();
- const httpServer = new HapiHttpServer();
+const httpServer = new ExpressHttpServer();
+//const httpServer = new HapiHttpServer();
 const productData = new ProductData(connection);
 const couponData = new CouponData(connection);
 const orderData = new OrderData(connection);
