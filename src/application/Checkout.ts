@@ -18,9 +18,7 @@ export class Checkout {
 
     async execute(input: Input) {
         const currencies = await this.currencyGateway.getCurrencies();
-        const today = new Date();
-        const sequence = await this.orderData.count() + 1;
-        const order = new Order(input.cpf, today, sequence);
+        const order = new Order(input.cpf);
         for(let item of input.items) {
             const product = await this.productData.getProduct(item.idProduct);
             order.addItem(product, item.quantity, product.currency, currencies.getCurrency(product.currency));

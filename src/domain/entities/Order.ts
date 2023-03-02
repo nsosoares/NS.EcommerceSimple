@@ -8,7 +8,7 @@ import { Cpf } from "./Cpf";
 export class Order {
     cpf: Cpf;
     items: Item[];
-    coupon?: Coupon;
+    coupon?: Coupon = undefined;
     freight: number = 0;
     code: OrderCode;
     constructor(cpf: string, readonly date: Date = new Date(), readonly sequence: number = 1) {
@@ -25,8 +25,9 @@ export class Order {
     }
 
     addCoupon(coupon: Coupon) {
-        if(coupon.isExpired()) return;
-        this.coupon = coupon;
+        if(!coupon.isExpired()) {
+            this.coupon = coupon;
+        } 
     }
 
     getCode(): string {

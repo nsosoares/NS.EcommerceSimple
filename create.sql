@@ -26,7 +26,7 @@ create table ecommerce.coupon (
     expire_date date
 );
 
-insert into ecommerce.coupon (code, percentage, expire_date) VALUES ('VALE20', 20, '2023-02-15');
+insert into ecommerce.coupon (code, percentage, expire_date) VALUES ('VALE20', 20, '2023-03-15');
 insert into ecommerce.coupon (code, percentage, expire_date) VALUES ('VALE10', 20, '2023-01-01');
 
 create table ecommerce.order (

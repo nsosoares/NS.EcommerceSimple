@@ -32,7 +32,7 @@ beforeEach(() => {
     couponData = {
         async getCoupon(code: string): Promise<Coupon> {
             const coupons: {[code: string]: any}= {
-                'VALE20': {code: 'VALE20', percentage: 20, expire_date: new Date('2023-02-15')},
+                'VALE20': {code: 'VALE20', percentage: 20, expire_date: new Date('2023-03-15')},
                 'VALE10': {code: 'VALE10', percentage: 20, expire_date: new Date('2023-01-01')}
             }
             const couponObtained = coupons[code];

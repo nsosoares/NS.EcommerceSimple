@@ -9,7 +9,7 @@ export class OrderData implements IOrderData {
     }
 
     async save(order: Order): Promise<void> {
-        await this.connection.query(`insert into ecommerce.order (cpf, total) values ('${order.cpf}', ${order.getTotal()})`, [order]);
+        await this.connection.query(`insert into ecommerce.order (cpf, total) values ('${order.cpf.getValue()}', ${order.getTotal()})`, [order]);
     }
 
     async getByCpf(cpf: string): Promise<any> {
