@@ -9,6 +9,7 @@ import { Checkout } from '../src/application/Checkout';
 import Sinon from 'sinon';
 import { CurrencyGateway } from '../src/infra/gateway/CurrencyGateway';
 import { IOrderData } from '../src/domain/data/IOrderData';
+import { Product } from '../src/domain/entities/Product';
 
 let checkout: Checkout;
 let productData: IProductData;
@@ -16,15 +17,15 @@ let couponData: ICouponData;
 let orderData: IOrderData;
 beforeEach(() => {
     productData = {
-        async getProduct(idProduct: number): Promise<any> {
-            const products: {[idProduct: number]: any} = {
-                1: {idProduct: 1, price: 10, description: 'A', width: 100, height: 30, length: 10, weigth: 3, currency: 'BRL'},
-                2: {idProduct: 2, price: 10, description: 'B', width: 50, height: 50, length: 50, weigth: 22, currency: 'BRL'},          
-                3: {idProduct: 3, price: 10, description: 'C', width: 10, height: 10, length: 10, weigth: 0.9, currency: 'BRL'},          
-                4: {idProduct: 4, price: 10, description: 'D', width: 10, height: 0, length: 10, weigth: 0.9, currency: 'BRL'},          
-                5: {idProduct: 5, price: 10, description: 'E', width: 10, height: 10, length: 10, weigth: 0, currency: 'BRL'},          
-                6: {idProduct: 6, price: 10, description: 'F', width: 10, height: 6, length: 4, weigth: 0.9, currency: 'BRL'},
-                7: {idProduct: 7, price: 10, description: 'G', width: 10, height: 6, length: 4, weigth: 0.9, currency: 'USD'}         
+        async getProduct(idProduct: number): Promise<Product> {
+            const products: {[idProduct: number]: Product} = {
+                1: new Product(1, 10, 'A', 100, 30, 10, 3, 'BRL'),
+                2: new Product(2, 10, 'B', 50, 50, 50, 22, 'BRL'),          
+                3: new Product(3, 10, 'C', 10, 10, 10, 0.9, 'BRL'),          
+                4: new Product(4, 10, 'D', 10, 0, 10, 0.9, 'BRL'),          
+                5: new Product(5, 10, 'E', 10, 10, 10, 0, 'BRL'),          
+                6: new Product(6, 10, 'F', 10, 6, 4, 0.9, 'BRL'),
+                7: new Product(7, 10, 'G', 10, 6, 4, 0.9, 'USD')         
             }
             return products[idProduct];
         }

@@ -56,5 +56,6 @@ test("Deve validar se possui algum produto com dimensões negativas", function()
 
 test("Deve validar se possui algum produto com peso negativo", function() {
     const order = new Order("772.801.132-49");
-    expect(() =>  order.addItem(new Product(1, 10, 'B', 50, 50, 50, -1), 1)).toThrow(new Error("Item with negative weight"));
+    const product = new Product(1, 10, 'B', 50, 50, 50, -1);
+    expect(() =>  order.addItem(product, 1)).toThrow(new Error("Item with negative weight"));
 });

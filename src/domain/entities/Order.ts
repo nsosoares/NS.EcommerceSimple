@@ -18,6 +18,7 @@ export class Order {
     }
 
     addItem(product: Product, quantity: number, currencyCode: string = 'BRL', currencyValue: number = 1) {
+        product.validateDimension();
         const hasRepeatedItems = this.items.some(item => item.idProduct === product.idProduct);
         if(hasRepeatedItems) throw new Error("Has repeated item");
         this.items.push(new Item(product.idProduct, product.price, quantity, currencyCode, currencyValue));
