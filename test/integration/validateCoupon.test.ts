@@ -1,6 +1,6 @@
-import { PgPromiseConnection } from './../src/infra/database/PgPromiseConnection';
-import { ValidateCoupon } from '../src/application/ValidateCoupon';
-import { CouponData } from '../src/infra/data/CouponData';
+import { PgPromiseConnection } from '../../src/infra/database/PgPromiseConnection';
+import { ValidateCoupon } from '../../src/application/ValidateCoupon';
+import { CouponData } from '../../src/infra/data/CouponData';
 
 test("Deve validar um cupom de desconto", async function() {
     const connection = new PgPromiseConnection();

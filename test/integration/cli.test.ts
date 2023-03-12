@@ -1,11 +1,11 @@
 import Sinon from "sinon";
-import { Checkout } from "../src/application/Checkout";
-import { CLIController } from "../src/infra/controller/CLIController";
-import { CouponData } from "../src/infra/data/CouponData";
-import { OrderData } from "../src/infra/data/OrderData";
-import { ProductData } from "../src/infra/data/ProductData";
-import { PgPromiseConnection } from "../src/infra/database/PgPromiseConnection";
-import { CLIHandlerMemory } from "../src/infra/cli/CLIHandlerMemory";
+import { Checkout } from "../../src/application/Checkout";
+import { CLIController } from "../../src/infra/controller/CLIController";
+import { CouponData } from "../../src/infra/data/CouponData";
+import { OrderData } from "../../src/infra/data/OrderData";
+import { ProductData } from "../../src/infra/data/ProductData";
+import { PgPromiseConnection } from "../../src/infra/database/PgPromiseConnection";
+import { CLIHandlerMemory } from "../../src/infra/cli/CLIHandlerMemory";
 
 test("Deve testar o CLI", async function() {
     const connection = new PgPromiseConnection();

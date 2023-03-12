@@ -1,15 +1,15 @@
-import { Currencies } from '../src/domain/entities/Curriencies';
-import { Coupon } from '../src/domain/entities/Coupon';
-import { IMailer } from '../src/infra/mailer/IMailer';
-import { ICurrencyGateway } from '../src/infra/gateway/ICurrencyGateway';
-import { Mailer } from '../src/infra/mailer/Mailer';
-import { ICouponData } from '../src/domain/data/ICouponData';
-import { IProductData } from '../src/domain/data/IProductData';
-import { Checkout } from '../src/application/Checkout';
+import { Currencies } from '../../src/domain/entities/Curriencies';
+import { Coupon } from '../../src/domain/entities/Coupon';
+import { IMailer } from '../../src/infra/mailer/IMailer';
+import { ICurrencyGateway } from '../../src/infra/gateway/ICurrencyGateway';
+import { Mailer } from '../../src/infra/mailer/Mailer';
+import { ICouponData } from '../../src/domain/data/ICouponData';
+import { IProductData } from '../../src/domain/data/IProductData';
+import { Checkout } from '../../src/application/Checkout';
 import Sinon from 'sinon';
-import { CurrencyGateway } from '../src/infra/gateway/CurrencyGateway';
-import { IOrderData } from '../src/domain/data/IOrderData';
-import { Product } from '../src/domain/entities/Product';
+import { CurrencyGateway } from '../../src/infra/gateway/CurrencyGateway';
+import { IOrderData } from '../../src/domain/data/IOrderData';
+import { Product } from '../../src/domain/entities/Product';
 
 let checkout: Checkout;
 let productData: IProductData;

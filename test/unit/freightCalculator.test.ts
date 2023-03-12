@@ -1,5 +1,5 @@
-import { FreightCalculator } from "../src/domain/entities/FreightCalculator";
-import { Product } from "../src/domain/entities/Product";
+import { FreightCalculator } from "../../src/domain/entities/FreightCalculator";
+import { Product } from "../../src/domain/entities/Product";
 
 test("Deve calcular um frente de um produto", function () {
     const output = FreightCalculator.calculate(new Product(1, 10, 'A', 100, 30, 10, 3));

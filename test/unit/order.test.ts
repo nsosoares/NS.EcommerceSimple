@@ -1,6 +1,6 @@
-import { Coupon } from '../src/domain/entities/Coupon';
-import { Order } from "../src/domain/entities/Order";
-import { Product } from "../src/domain/entities/Product";
+import { Coupon } from '../../src/domain/entities/Coupon';
+import { Order } from "../../src/domain/entities/Order";
+import { Product } from "../../src/domain/entities/Product";
 
 test("Deve criar um pedido com cpf válido", function () {
     const order = new Order("772.801.132-49");

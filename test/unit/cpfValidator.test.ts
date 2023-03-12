@@ -1,4 +1,4 @@
-import { validate } from "../src/domain/entities/cpfValidator";
+import { validate } from "../../src/domain/entities/cpfValidator";
 
 const invalidCpfs = [
     "111.111.111-11",

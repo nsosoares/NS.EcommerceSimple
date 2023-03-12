@@ -1,6 +1,6 @@
-import { PgPromiseConnection } from './../src/infra/database/PgPromiseConnection';
-import { SimulateFreight } from '../src/application/SimulateFreight';
-import { ProductData } from '../src/infra/data/ProductData';
+import { PgPromiseConnection } from '../../src/infra/database/PgPromiseConnection';
+import { SimulateFreight } from '../../src/application/SimulateFreight';
+import { ProductData } from '../../src/infra/data/ProductData';
 test("Deve simular o valor de um frete", async function() {
     const input = {
         cpf: "772.801.132-49",

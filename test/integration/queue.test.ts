@@ -1,11 +1,11 @@
 import Sinon from "sinon";
-import { Checkout } from "../src/application/Checkout";
-import { QueueController } from "../src/infra/controller/QueueController";
-import { CouponData } from "../src/infra/data/CouponData";
-import { OrderData } from "../src/infra/data/OrderData";
-import { ProductData } from "../src/infra/data/ProductData";
-import { PgPromiseConnection } from "../src/infra/database/PgPromiseConnection";
-import { QueueMemory } from "../src/infra/queue/QueueMemory";
+import { Checkout } from "../../src/application/Checkout";
+import { QueueController } from "../../src/infra/controller/QueueController";
+import { CouponData } from "../../src/infra/data/CouponData";
+import { OrderData } from "../../src/infra/data/OrderData";
+import { ProductData } from "../../src/infra/data/ProductData";
+import { PgPromiseConnection } from "../../src/infra/database/PgPromiseConnection";
+import { QueueMemory } from "../../src/infra/queue/QueueMemory";
 
 test("Deve testar a fila", async function () {
     const connection = new PgPromiseConnection();

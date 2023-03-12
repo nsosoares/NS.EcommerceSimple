@@ -1,9 +1,9 @@
-import { PgPromiseConnection } from './../src/infra/database/PgPromiseConnection';
-import { Checkout } from '../src/application/Checkout';
-import { OrderData } from '../src/infra/data/OrderData';
-import { ProductData } from '../src/infra/data/ProductData';
-import { CouponData } from '../src/infra/data/CouponData';
-import { GetOrderByCpf } from '../src/application/GetOrderByCpf';
+import { PgPromiseConnection } from '../../src/infra/database/PgPromiseConnection';
+import { Checkout } from '../../src/application/Checkout';
+import { OrderData } from '../../src/infra/data/OrderData';
+import { ProductData } from '../../src/infra/data/ProductData';
+import { CouponData } from '../../src/infra/data/CouponData';
+import { GetOrderByCpf } from '../../src/application/GetOrderByCpf';
 
 test("Deve consultar um pedido", async function() {
     const connection = new PgPromiseConnection();
