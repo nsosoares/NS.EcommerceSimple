@@ -10,6 +10,6 @@ export class ProductData implements IProductData {
     async getProduct(idProduct: number): Promise<Product> {
         const [productData] = await this.connection.query(`select * from ecommerce.product where id_product = ${idProduct}`, [idProduct]);
         if(!productData) throw new Error('Product not exist');
-        return new Product(productData.id_product, parseFloat(productData.price), productData.description, productData.width, productData.height, productData.length, productData.weigth);
+        return new Product(productData.id_product, productData.description, parseFloat(productData.price), productData.width, productData.height, productData.length, productData.weight);
     }
 }

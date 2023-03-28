@@ -2,23 +2,21 @@ create schema ecommerce;
 
 create table ecommerce.product (
     id_product integer primary key,
-    price numeric,
-    description text,
-    width integer,
-    height integer,
-    length integer,
-    weigth integer,
-    currency text
+	description text,
+	price numeric,
+	width integer,
+	height integer,
+	length integer,
+	weight numeric,
+	currency text
 );
 
-insert into ecommerce.product (id_product, price, description, width, height, length, weigth, currency) VALUES (1, 10, 'A', 100, 30, 10, 3, 'BRL');
-insert into ecommerce.product (id_product, price, description, width, height, length, weigth, currency) VALUES (2, 10, 'B', 50, 50, 50, 22, 'BRL');
-insert into ecommerce.product (id_product, price, description, width, height, length, weigth, currency) VALUES (3, 10, 'C', 10, 10, 10, 0.9, 'BRL');
-insert into ecommerce.product (id_product, price, description, width, height, length, weigth, currency) VALUES (4, 10, 'D', 10, 0, 10, 0.9, 'BRL');
-insert into ecommerce.product (id_product, price, description, width, height, length, weigth, currency) VALUES (5, 10, 'E', 10, 10, 10, 0, 'BRL');
-insert into ecommerce.product (id_product, price, description, width, height, length, weigth, currency) VALUES (6, 10, 'F', 10, 6, 4, 0.9, 'BRL');
-insert into ecommerce.product (id_product, price, description, width, height, length, weigth, currency) VALUES (7, 10, 'G', 10, 6, 4, 0.9, 'USD');
-
+insert into ecommerce.product (id_product, description, price, width, height, length, weight, currency) VALUES (2, 'B', 5000, 50, 50, 50, 22, 'BRL');
+insert into ecommerce.product (id_product, description, price, width, height, length, weight, currency) VALUES (1, 'A', 1000, 100, 30, 10, 3, 'BRL');
+insert into ecommerce.product (id_product, description, price, width, height, length, weight, currency) VALUES (3, 'C', 30, 10, 10, 10, 0.9, 'BRL');
+insert into ecommerce.product (id_product, description, price, width, height, length, weight, currency) VALUES (4, 'D', 100, 100, 30, 10, 3, 'USD');
+insert into ecommerce.product (id_product, description, price, width, height, length, weight, currency) VALUES (5, 'E', 100, 100, 30, 10, -3, 'USD');
+insert into ecommerce.product (id_product, description, price, width, height, length, weight, currency) VALUES (6, 'F', 100, 100, -30, 10, 3, 'USD');
 
 create table ecommerce.coupon (
     code text primary key,
@@ -26,7 +24,7 @@ create table ecommerce.coupon (
     expire_date date
 );
 
-insert into ecommerce.coupon (code, percentage, expire_date) VALUES ('VALE20', 20, '2023-03-15');
+insert into ecommerce.coupon (code, percentage, expire_date) VALUES ('VALE20', 20, '2060-09-15');
 insert into ecommerce.coupon (code, percentage, expire_date) VALUES ('VALE10', 20, '2023-01-01');
 
 create table ecommerce.order (

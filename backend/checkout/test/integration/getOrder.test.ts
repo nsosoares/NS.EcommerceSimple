@@ -14,12 +14,12 @@ test("Deve consultar um pedido", async function() {
     const input = {
         cpf: "828.683.357-05",
         items: [
-            {idProduct: 6, quantity: 1}
+            {idProduct: 3, quantity: 1}
         ]
     };
     await checkout.execute(input);
     const getOrderByCpf = new GetOrderByCpf(orderData);
     const output = await getOrderByCpf.execute("828.683.357-05");
-    expect(output.total).toBe(20);
+    expect(output.total).toBe(40);
     await connection.close();
 });

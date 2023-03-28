@@ -26,6 +26,6 @@ test("Deve testar a fila", async function () {
     const [returnValues] = checkoutSpy.returnValues;
     const output = await returnValues;
     expect(output.code).toBe("202300000001");
-    expect(output.total).toBe(40);
+    expect(output.total).toBe(1030);
     checkoutSpy.restore();
 });

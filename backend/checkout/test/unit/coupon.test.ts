@@ -6,6 +6,6 @@ test("Deve validar se um cupom esta expirado", function() {
 });
 
 test("Deve obter um desconto encima de um valor total", function() {
-    const coupon = new Coupon('VALE20', 20, new Date('2023-02-15'));
+    const coupon = new Coupon('VALE20', 20, new Date('2023-05-15'));
     expect(coupon.getDiscount(200)).toBe(40);
 })

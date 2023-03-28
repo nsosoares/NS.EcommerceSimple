@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import { IHttpServer } from './IHttpServer';
 export class ExpressHttpServer implements IHttpServer {
@@ -5,6 +6,7 @@ export class ExpressHttpServer implements IHttpServer {
     constructor() {
         this.app = express();
         this.app.use(express.json());
+        this.app.use(cors());
     }
 
     on(method: string, url: string, callback: Function): void {

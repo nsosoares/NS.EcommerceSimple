@@ -19,13 +19,13 @@ beforeEach(() => {
     productData = {
         async getProduct(idProduct: number): Promise<Product> {
             const products: {[idProduct: number]: Product} = {
-                1: new Product(1, 10, 'A', 100, 30, 10, 3, 'BRL'),
-                2: new Product(2, 10, 'B', 50, 50, 50, 22, 'BRL'),          
-                3: new Product(3, 10, 'C', 10, 10, 10, 0.9, 'BRL'),          
-                4: new Product(4, 10, 'D', 10, 0, 10, 0.9, 'BRL'),          
-                5: new Product(5, 10, 'E', 10, 10, 10, 0, 'BRL'),          
-                6: new Product(6, 10, 'F', 10, 6, 4, 0.9, 'BRL'),
-                7: new Product(7, 10, 'G', 10, 6, 4, 0.9, 'USD')         
+                1: new Product(1, 'A', 10, 100, 30, 10, 3, 'BRL'),
+                2: new Product(2, 'B', 10, 50, 50, 50, 22, 'BRL'),          
+                3: new Product(3, 'C', 10, 10, 10, 10, 0.9, 'BRL'),          
+                4: new Product(4, 'D', 10,  10, 0, 10, 0.9, 'BRL'),          
+                5: new Product(5, 'E', 10, 10, 10, 10, 0, 'BRL'),          
+                6: new Product(6, 'F', 10, 10, 6, 4, 0.9, 'BRL'),
+                7: new Product(7, 'G', 10, 10, 6, 4, 0.9, 'USD')         
             }
             return products[idProduct];
         }
@@ -33,7 +33,7 @@ beforeEach(() => {
     couponData = {
         async getCoupon(code: string): Promise<Coupon> {
             const coupons: {[code: string]: any}= {
-                'VALE20': {code: 'VALE20', percentage: 20, expire_date: new Date('2023-03-15')},
+                'VALE20': {code: 'VALE20', percentage: 20, expire_date: new Date('2098-03-15')},
                 'VALE10': {code: 'VALE10', percentage: 20, expire_date: new Date('2023-01-01')}
             }
             const couponObtained = coupons[code];

@@ -23,6 +23,6 @@ test("Deve testar o CLI", async function() {
     const output = await returnValues;
     console.log(output);
     expect(output.code).toBe('202300000001');
-    expect(output.total).toBe(40);
+    expect(output.total).toBe(1030);
     checkoutSpy.restore();
 });

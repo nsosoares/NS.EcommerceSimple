@@ -20,12 +20,12 @@ test("Deve criar um pedido com 3 produtos", async function() {
         items: [
             {idProduct: 1, quantity: 1},
             {idProduct: 2, quantity: 1},
-            {idProduct: 3, quantity: 2},
+            {idProduct: 3, quantity: 3},
         ]
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
     const output = response.data;
-    expect(output.total).toBe(300);
+    expect(output.total).toBe(6350);
 });
 
 test("Deve validar produto não existente", async function () {
@@ -46,13 +46,13 @@ test("Deve fazer um pedido com 3 produtos com cupom de desconto", async function
         items: [
             {idProduct: 1, quantity: 1},
             {idProduct: 2, quantity: 1},
-            {idProduct: 3, quantity: 2}
+            {idProduct: 3, quantity: 3}
         ],
         coupon: "VALE20"
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
     const output = response.data;
-    expect(output.total).toBe(292);
+    expect(output.total).toBe(5132);
 });
 
 test("Deve fazer um pedido com cupom expirado", async function() {
@@ -61,13 +61,13 @@ test("Deve fazer um pedido com cupom expirado", async function() {
         items: [
             {idProduct: 1, quantity: 1},
             {idProduct: 2, quantity: 1},
-            {idProduct: 3, quantity: 2}
+            {idProduct: 3, quantity: 3}
         ],
         coupon: "VALE10"
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
     const output = response.data;
-    expect(output.total).toBe(300);
+    expect(output.total).toBe(6350);
 });
 
 test("Deve fazer um pedido com cupom inexistente", async function() {
@@ -116,7 +116,7 @@ test("Deve fazer um pedido com item com dimensão negativa", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
-            {idProduct: 4, quantity: 2},
+            {idProduct: 6, quantity: 2},
         ]
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
@@ -148,17 +148,17 @@ test("Deve fazer um pedido calculando o frete", async function() {
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
     const output = response.data;
-    expect(output.total).toBe(40);
+    expect(output.total).toBe(1030);
 });
 
 test("Deve fazer um pedido calculando o valor minimo de frete", async function() {
     const order = {
         cpf: "772.801.132-49",
         items: [
-            {idProduct: 6, quantity: 1},
+            {idProduct: 3, quantity: 1},
         ]
     };
     const response = await axios.post("http://localhost:3000/checkout", order);
     const output = response.data;
-    expect(output.total).toBe(20);
+    expect(output.total).toBe(40);
 });

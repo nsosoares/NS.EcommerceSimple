@@ -1,5 +1,5 @@
 export class Product {
-    constructor(readonly idProduct: number, readonly price: number, readonly description: string, readonly width: number, readonly height: number, readonly length: number, readonly weigth: number, readonly currency: string = 'BRL') {
+    constructor(readonly idProduct: number, readonly description: string, readonly price: number, readonly width: number, readonly height: number, readonly length: number, readonly weight: number, readonly currency: string = "BRL") {
         
     }
 
@@ -7,7 +7,7 @@ export class Product {
         if(this.width <= 0 || this.height <= 0 || this.width <= 0 || this.length <= 0) {
             throw new Error("Item with negative dimension");
         }
-        if(this.weigth <= 0) {
+        if(this.weight <= 0) {
             throw new Error("Item with negative weight");
         }
     }
@@ -17,6 +17,6 @@ export class Product {
     }
 
     getDensity() {
-        return  this.weigth / this.getVolume();
+        return  this.weight / this.getVolume();
     }
 }
